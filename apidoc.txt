@@ -1,0 +1,235 @@
+schema:Movie
+attributes:title,year,director,run_time,language,genre,producer
+
+
+1)Api for listing all Movies
+
+    url:localhost:8000/api/movies
+
+    method:GET
+
+    body:nill
+
+    status:pending
+
+2)api for creating a movie
+
+    url:localhost:8000/api/movies
+
+    method :POST
+
+    body:{
+        "title":"movie title",
+        "year":"movie year",
+        "run_time":"movie run_time",
+        "director":"movie director",
+        "language":"movie language",
+        "genre":"movie genre",
+        "producer":movie producer"
+
+    }
+
+    status:pending
+
+3)api for fetching a specific movie
+
+    url:localhost:8000/api/movies/{id}/
+
+    method:GET
+
+    body:nill
+
+    status:pending    
+
+
+
+4)api for updating  a movie
+
+    url:localhost:8000/api/movies/{id}/
+
+    method:PUT
+
+    body:{
+        "title":"movie title",
+        "year":"movie year",
+        "run_time":"movie run_time",
+        "director":"movie director",
+        "language":"movie language",
+        "genre":"movie genre",
+        "producer":movie producer"
+        
+    }
+
+    status:pending
+
+5)api for deleting a specific movie
+
+    url:localhost:8000/api/movies/{id}
+
+    method:DELETE
+
+    body:nill
+
+    status:pending    
+
+
+6)Api for listing all languages
+
+    url:localhost:8000/api/movies/languages/
+
+    method:GET
+
+    body:nill
+
+     
+
+
+ 
+Django rest framework
+
+    step 1) install djangorestframework
+
+        >pip install djangorestframework
+
+    step 2) then add in settings.py
+
+            installed apps=[
+
+                "rest_framework"
+            ]   
+
+    step 3) creating views  
+
+
+        rest_framework>views.py> class APIView  
+
+        rest_framework>response.py>class Response
+
+        class MovieListCreateView(APIView):
+
+            def get(self,request,*args,**kwargs):
+
+                //logic for returning all movies
+
+                qs=Movies.objects.all()
+
+                //Response class is responsible for converting python native type
+                //(list,set,tuple,dictionary) to JSON
+
+                return Response(data={"message":"movie list"})
+
+            def post(self,request,*args,**kwargs):
+
+                //logic for adding a new movie
+
+                return Response(data={"message":"movie create"})
+
+
+class MovieRetrieveUpdateDestroyView(APIView):    
+
+    def get(self,request,*args,**kwargs):
+
+        #extract id from url and return moviedetail with movieid=id
+
+        return Response(data={"message":"movie detail"})
+
+    def put(self,request,*args,**kwargs):
+
+        #extract movie id and update movie detail
+
+        return Response(data={"message":"movie updated"})
+
+    def delete(self,request,*args, ** kwargs):
+
+        #extract id from url and delete movie with movieid=id
+
+        return Response(data={"message":"deleted"})
+
+=================================================================
+Schema: Actor
+
+attributes: name, age, gender, picture
+
+1)Api for listing all Actors
+
+    url: localhost:8000/api/actors/
+
+    method:GET
+
+    body:nill
+
+    status:pending
+
+
+2)Api for creating Actors
+
+    url:localhost:8000/api/actors/
+
+    method: POST
+
+    body:{
+        "name": "actor name",
+        "age": actor_age,
+        "picture":"actor_picture"
+        "gender":"actor gender"
+    }    
+
+    status: pending
+
+3)Api for retrieving Actor detail
+
+    url:localhost:8000/api/actors/{id}/
+
+    method:GET
+
+    body:nill
+
+    status:pending    
+
+4)Api for updating Actor detail
+
+    url:localhost:8000/api/actors/{id}/
+
+    method: PUT
+
+    body: {
+        "name": "actor name",
+        "age": actor_age,
+        "picture":"actor_picture"
+        "gender": "actor gender"
+    }
+
+    status:pending    
+
+5) Api for remove Actor
+
+    url:localhost:8000/api/actors/{id}/
+
+    method:delete
+
+    body:nill
+
+    status:pending    
+
+
+*)api call for adding a new track
+
+    url:localhost:8000/api/albums/{id}/add_track/
+
+    method: post
+
+    body: {title, duration, track_number, singers, genre, }
+
+
+schema: Review
+
+attributes: [id, comment, rating, user, album_object, created_date]
+
+
+1)Api for adding a Review
+
+    url:localhost:8000/api/albums/{id}/add_review/
+
+    method: post
+
+    body:{comment,rating,user}
